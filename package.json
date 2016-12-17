@@ -1,0 +1,33 @@
+{
+  "name": "emailmaker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "^1.0.0",
+    "express": "~4.14.0",
+    "google-auth-library": "^0.9.10",
+    "googleapis": "^15.0.0",
+    "mongodb": "^2.2.16",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "description": "use google service account to create new users via a form",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwinruizr/emailMaker.git"
+  },
+  "author": "Edwin Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edwinruizr/emailMaker/issues"
+  },
+  "homepage": "https://github.com/edwinruizr/emailMaker#readme"
+}
