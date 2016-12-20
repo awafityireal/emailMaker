@@ -8,6 +8,7 @@ var fs = require('fs');
 router.post('/', function(req, res, next) {
 
 //came from form
+  console.log(req);
   res.send(listUsers());
 });
 
