@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "emailmaker-147916",
+  "private_key_id": "faa78e359d80df8d717baed96a99e33ec668dbdc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDJTaby+KdKpixV\nSd/j5uoG675nWs4oNPKQrrdbOly8czjLvGV5KHoyqJQZiDen3pfkvMQG8FdVTZeO\nkRQGsPzYu03cIA/3pD/v3/9+T/VIXycLI1V7SpvxSMQdUC92HD3ybZXviu+ImW1L\nKj0id6qy+p7/j4tLKYydVgshqGYJJunAinRzuRP1QAHRyl3bP+avoI7ZnY2wHSRl\njIRDpNa2rnANVf8tHhWLaRKgecTVa9hAmOJ/ViMU9CueTN3rdbRj2MjyqLwUnUlu\nf90D5UGec4365YENfLZDIYpFM6Jru92mnN29e84N0mkmA1pjo3tPJNiEuGRmaA3C\nODzij0MdAgMBAAECggEAPTqvUywqxlvxFCgaP5nXCS/fhFRsbHJebX+XKdqApplt\nZxrwyn9zW8FG+tUiCJ9+GAcKoQmtprapKKYcL0TaQ5oFPrVJ5gtBn1bEwcjUVKUM\nnSisMYoqEKQPctMW/Jfuh7SpbGkYHrZ8NeatHbTEaRguEJG6zqvep2SqkhxEnPd8\nJ0vFxBLjUE3pVYJhaGstH/kqIKgospkVzpnrbaH4Zb6qG/fSFUFsEefg2Dl74vSL\n/Ry2/gdFe3SJvIZTSo/bKcVXuCGg6AV3MyPiQK9oiBzaUDqBtWQ90/GI8JdztfNi\ngp7OoOX/rL9pGR0uKTuItYiu7tO91QMmG66coIKQiQKBgQD9XrFjR1nQJksfKTdS\ns5QwMIIgh4t2eoPX55W/iRiba/kKDuJdsICjtPcm6c9pAgmzqoJlUvDOWJVtGRVP\nz3GqFoJ2IchlBkDgqT5KiMSQ/8QhGncDKPaH1tD1Ih1NjRY1kEyYKIqLxvo2lmvQ\nZv6oLSZbPjcxlTY9e+UfCoViTwKBgQDLZJjeAuICF2xZj4kQ7HxN/wZ3PElLpd6k\nd2RkAXIIY2dYJElGptJJcbXFL2Eub2MUxNM4H4zQlBIIwuk4DdlHVXkHuG7M00Fs\nsUkAvQNx7fTR7q0WGhPXwqZBbcYC6tVSU2AAIk2jvaX1yLYWZnF7TYmeIevBkDmo\noehDlgoE0wKBgEkIoaNXbtkkIKVT0SGiqAWYBfpwd8/oEtcKZ0z1rMUoQ3oVvkR5\nWytVP6TU4reHIdrLPJkOZmFkgXYYM990kXQQ1vxMUqJkQhFAV7dOYzLUtuk/4qxj\ng2S2lDcE5WN0VsGL3bhCf2U5LujLRTqmZaN+mD7W2TwOobrpWqsu8jHbAoGAEoPv\n3pYImQQk2upUIfRFRJxorEYSrg5FfFdaDjiLdvQFnmJ/QS1Ci2kMkQzFHgMJ1AQu\n7jcBDKPOGHoV3QJ1uyauw+MoQwEgPZLOAIE0ZRSyasH9g7uP/t47YE1r7ywNi1cH\nsDtvMe67wuoomVVuEzl1w6121sIYXZ+Pk0d/Vf0CgYBmNqM2drnpIFMiGScKhprm\nFTtXYC9OI5MSdZ5/L7Lvlv5lRJyD5eCGWVUFLbq16b5PGW3Y8WDoVnTsU/jeTH8V\ny3zQVVASv+ALn7W9mju0yzxnjEwTSGAl6R/s7vQa2PjXseggl4CALdT4MYpp4Ch9\nxFVwNewHg0xP9+Knx6R0Uw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "aluservice@emailmaker-147916.iam.gserviceaccount.com",
+  "client_id": "113993340156445757673",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/aluservice%40emailmaker-147916.iam.gserviceaccount.com"
+}
