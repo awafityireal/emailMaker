@@ -62,7 +62,7 @@ router.post('/', function(req, res, next) {
       console.log("Couldn't connect to server");
     }else{
      console.log("Connected successfully to server");
-    console.log( MongoClient.db("studentEmails").find({email:oldEmail}) );
+    console.log( db.studentEmails.find({email:'test@gmail.com'}) );
    }
     db.close();
   });
@@ -70,7 +70,8 @@ router.post('/', function(req, res, next) {
 //  makeNewEmail(firstName,lastName,newEmail,emailPassword);
 //came from form
   console.log(req.body);
-
+  //
+  res.redirect('https://www.google.com/accounts/AccountChooser?Email='+ newEmail+'&continue=https://apps.google.com/user/hub');
 });
 
 module.exports = router;
