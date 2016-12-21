@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var response = require('./routes/response');
 
 var app = express();
 //Here we are configuring express to use body-parser as middle-ware.
@@ -25,11 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index);
-app.post('/',function(req,res){
-  console.log("in app.js post /")
-  console.log();
-
-});
+app.post('/',response);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

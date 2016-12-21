@@ -2,44 +2,44 @@
 	<div class="container">
 		<h1 class="col-sm-6 col-sm-offset-3">ALU Email Maker</h1>
 		<div class="row col-sm-12">
-		<form class="form-sign-in" id="email_form" action="/" method="POST">
-			<div class="form-group">
-				<label for="userSSN" class="col-sm-2 control-label">SSN:</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" id="userSSN" placeholder="SSN">
-					<span id="essn"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="fName" class="col-sm-2 control-label">First Name:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="fName" placeholder="Your first name">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="lName" class="col-sm-2 control-label">Last Name:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="lName" placeholder="Your last name">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="userEmail" class="col-sm-2 control-label">Desired Email:</label>
-				<div class="col-sm-10">
-					<input type="email" class="form-control" id="userEmail" placeholder="Email">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="userPassword" class="col-sm-2 control-label">Password:</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" id="userPassword" placeholder="Password">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" id="submit" class="btn btn-lg btn-default">Make My Email!!</button>
-				</div>
-			</div>
-		</form>
+				<form class="form-sign-in" id="email_form" action="http://localhost:3000/" method="POST">
+					<div class="form-group has-feedback" id="oldemailgroup">
+						<label for="oldEmail" class="col-sm-2 control-label">Personal Email:</label>
+						<div class="col-sm-12">
+							<input type="email" class="form-control" id="oldEmail" name="oldEmail" placeholder="Enter your personal email address">
+							<span id="oldemailspan"></span>
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="fnamegroup">
+						<label for="fName" class="col-sm-2 control-label">First Name:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="fName" id="fName" placeholder="Your first name"><span id="fnamespan"></span>
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="lnamegroup">
+						<label for="lName" class="col-sm-2 control-label">Last Name:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" id="lName" name="lName" placeholder="Your last name"><span id="lnamespan"></span>
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="useremailgroup">
+						<label for="userEmail" class="col-sm-2 control-label">Desired Email:</label>
+						<div class="col-sm-12">
+							<input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Desired ALU email"><span id="useremailspan"></span>
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="passwordgroup">
+						<label for="userPassword" class="col-sm-2 control-label">Password:</label>
+						<div class="col-sm-12">
+							<input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password"><span id="passwordspan"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" id="submit" class="btn btn-lg btn-default">Make My Email!!</button>
+						</div>
+					</div>
+				</form>
 		</div>
 	</div>
 <%- include footer.ejs %>
