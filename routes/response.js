@@ -4,7 +4,7 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var key = require('../emailMaker.json');
 var fs = require('fs');
-var mongo = require('mongodb');
+var mongojs = require('mongojs');
 
 
 function makeNewEmail(fname,lname,newemail,emailpassword){
@@ -34,8 +34,9 @@ function makeNewEmail(fname,lname,newemail,emailpassword){
               return;
             }
 
-          var users = response.user;
-        	console.log(response + "\n" + users +"\n");
+          var users = response.primaryEmail;
+        	console.log(response);
+            console.log(users);
       	}
       	);
     });
@@ -50,28 +51,32 @@ router.post('/', function(req, res, next) {
   var lastName = req.body.lName;
   var newEmail = req.body.userEmail;
   var emailPassword = req.body.userPassword;
-
+  var db = mongojs('studentEmails', ['studentEmails']);
   //MongoDB
-  var MongoClient = mongo.MongoClient;
-  // Connection URL
-  var url = 'mongodb://localhost:27017/studentEmails';
+  db.studentEmails.findOne({email:oldEmail},function(error, docs){
+    console.log("Error:")
+    console.log(error);
 
-  // Use connect method to connect to the server
-  MongoClient.connect(url, function(err, db) {
-    if(err){
-      console.log("Couldn't connect to server");
-    }else{
-     console.log("Connected successfully to server");
-    console.log( db.studentEmails.find({email:'test@gmail.com'}) );
-   }
+    if(docs!=null){
+      console.log("make new email");
+      //  makeNewEmail(firstName,lastName,newEmail,emailPassword);
+      console.log("delete email on database");
+    /* uncomment to delete email from db after student email has been created
+    try {
+      db.orders.deleteOne( { email: oldEmail} );
+      } catch (e) {
+         print(e);
+      }
+    }*/
+    console.log(docs);
     db.close();
-  });
+		});
 
-//  makeNewEmail(firstName,lastName,newEmail,emailPassword);
+res.render('success', { title: 'Email Maker', message:'ALU Email Maker' });
+
 //came from form
   console.log(req.body);
   //
-  res.redirect('https://www.google.com/accounts/AccountChooser?Email='+ newEmail+'&continue=https://apps.google.com/user/hub');
 });
 
 module.exports = router;
