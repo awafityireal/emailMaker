@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var response = require('./routes/response');
+var error = require('./routes/error');
 
 var app = express();
 //Here we are configuring express to use body-parser as middle-ware.
@@ -26,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index);
 app.post('/',response);
+app.get('/googleError',error);
+app.get('/response',response);
+app.use('/error', error);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,7 +46,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('404');
+  //renders 404.ejs
 });
 
 module.exports = app;

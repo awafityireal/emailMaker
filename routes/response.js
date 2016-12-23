@@ -4,10 +4,10 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var key = require('../emailMaker.json');
 var fs = require('fs');
-var mongo = require('mongodb');
+var mongojs = require('mongojs');
 
 
-function makeNewEmail(fname,lname,newemail,emailpassword){
+/*function makeNewEmail(fname,lname,newemail,emailpassword){
   var jwtClient = new google.auth.JWT(
     key.client_email,
     null,
@@ -31,47 +31,89 @@ function makeNewEmail(fname,lname,newemail,emailpassword){
         },function(error, response){
         	  if (error) {
               console.log('The API returned an error: ' + error);
-              return;
+              return error;
             }
-
-          var users = response.user;
-        	console.log(response + "\n" + users +"\n");
+        	return response;
       	}
       	);
     });
-}
+}*/
+router.get('/response', function(req, res) {
+  res.render('success', {title: 'Account Created'});
+});
 
 
 /* POST user new email info. */
-
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
   var oldEmail=req.body.oldEmail;
   var firstName = req.body.fName;
   var lastName = req.body.lName;
   var newEmail = req.body.userEmail;
   var emailPassword = req.body.userPassword;
 
+
+  var db = mongojs('studentEmails', ['studentEmails']);
   //MongoDB
-  var MongoClient = mongo.MongoClient;
-  // Connection URL
-  var url = 'mongodb://localhost:27017/studentEmails';
+  db.studentEmails.findOne({email:oldEmail},function(error, docs){
+    if(docs!=null){
+      console.log("make new email");
+      //message = makeNewEmail(firstName,lastName,newEmail,emailPassword);
+      var jwtClient = new google.auth.JWT(
+        key.client_email,
+        null,
+        key.private_key,
+        ["https://www.googleapis.com/auth/admin.directory.user"],
+        'eruiz@alu.edu'
+      );
 
-  // Use connect method to connect to the server
-  MongoClient.connect(url, function(err, db) {
-    if(err){
-      console.log("Couldn't connect to server");
+      jwtClient.authorize(function (err, tokens) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            google.admin('directory_v1').users.insert({
+                auth:jwtClient,
+                resource: {
+                name: { givenName: firstName, familyName: lastName },
+                password:emailPassword,
+                primaryEmail:newEmail
+                }
+            },function(error, response){
+                if (error) {
+                  console.log('The API returned an error: ' + error);
+                  res.redirect('/googleError');
+                  return;
+                }
+
+
+                console.log("going to delete email on database");
+                // uncomment to delete email from db after student email has been created
+                try {
+                db.studentEmails.remove( { email: oldEmail} );
+                console.log("deleted email on database");
+                } catch (e) {
+                   console.log(e);
+                }
+
+                res.redirect('/response');
+                return;
+
+
+
+            }
+            );
+        });
+
+
+
     }else{
-     console.log("Connected successfully to server");
-    console.log( db.studentEmails.find({email:'test@gmail.com'}) );
-   }
+      res.redirect('/error');
+    }
     db.close();
-  });
-
-//  makeNewEmail(firstName,lastName,newEmail,emailPassword);
-//came from form
-  console.log(req.body);
+		});
   //
-  res.redirect('https://www.google.com/accounts/AccountChooser?Email='+ newEmail+'&continue=https://apps.google.com/user/hub');
 });
+
+
 
 module.exports = router;
