@@ -25,11 +25,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', index);
-app.post('/',response);
 app.get('/googleError',error);
-app.get('/response',response);
-app.use('/error', error);
+app.get('/cpage',response);
+app.get('/error', error);
+app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
