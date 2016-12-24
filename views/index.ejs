@@ -24,9 +24,11 @@
 					</div>
 					<div class="form-group has-feedback" id="useremailgroup">
 						<label for="userEmail" class="col-sm-2 control-label">Desired Email:</label>
-						<div class="col-sm-12">
-							<input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Desired ALU email"><span id="useremailspan"></span>
+						<div class="col-sm-12 input-group">
+							<input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="Desired ALU email" aria-describedby="basic-addon2">
+							<span class="input-group-addon" id="basic-addon2">@student.alu.edu</span>
 						</div>
+						<span id="useremailspan"></span>
 					</div>
 					<div class="form-group has-feedback" id="passwordgroup">
 						<label for="userPassword" class="col-sm-2 control-label">Password:</label>

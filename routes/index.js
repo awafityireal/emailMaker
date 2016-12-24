@@ -19,7 +19,9 @@ router.post('/', function(req, res) {
   var newEmail = req.body.userEmail;
   var emailPassword = req.body.userPassword;
 
-
+  req.session.first=firstName;
+  req.session.last=lastName;
+  req.session.email=newEmail;
 
   var db = mongojs('studentEmails', ['studentEmails']);
   //MongoDB
@@ -49,30 +51,27 @@ router.post('/', function(req, res) {
                 },function(error, response){
                     if (error) {
                       console.log('The API returned an error: ' + error);
+                      req.session.googleErrorMessage = "email already taken!";
                       res.redirect('/googleError');
                       return;
                     }
-
-
                     console.log("going to delete email on database");
                     // uncomment to delete email from db after student email has been created
                     try {
-                    db.studentEmails.remove( { email: oldEmail} );
+                    db.studentEmails.remove({email:oldEmail});
                     console.log("deleted email on database");
                     } catch (e) {
                        console.log(e);
                     }
-
                     res.redirect('/cpage');
                     return;
-
-
-
-                }
-                );
+                  
+                });
             });
 
     }else{
+      //couldn't find that person on the database
+      req.session.notfound = "Couldn't find your email in our system.";
       res.redirect('/error');
       return;
     }

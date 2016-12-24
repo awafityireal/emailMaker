@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "ejs": "^1.0.0",
     "express": "~4.14.0",
+    "express-session": "^1.14.2",
     "google-auth-library": "^0.9.10",
     "googleapis": "^15.0.0",
     "mongodb": "^2.2.16",

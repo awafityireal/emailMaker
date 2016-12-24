@@ -1,4 +1,24 @@
 <%- include header.ejs %>
-<h1><%= message %></h1>
+<div class="container">
+  <div class="jumbotron">
+      <h1><%= message %></h1>
 
+  </div>
+  <!-- Full Width Image Header with Logo -->
+<!-- Image backgrounds are set within the full-width-pics.css file. -->
+<header class="image-bg-fluid-height">
+    <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
+</header>
+
+<!-- Content Section -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="section-heading">Email us to fix that at <a href="mailto:tech@alu.edu?subject=Insert%20my%20email%20into%20mongo!">tech@alu.edu</a></h1>
+                <p class="lead section-lead">Please head back to the <a href="/">home page</a></p>
+        </div>
+    </div>
+</section>
+</div>
 <%- include footer.ejs %>

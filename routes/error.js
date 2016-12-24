@@ -2,10 +2,18 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/error', function(req, res, next) {
-  res.render('error', { title:'Unsuccessful', message:'was not able to create your email account'});
+  if(req.session.notfound){
+  res.render('error', { title:'Unsuccessful', message:req.session.notfound});
+}else{
+  res.render('error', { title:'Unsuccessful', message:""});
+}
 });
 
 router.get('/googleError', function(req, res, next) {
-  res.render('error', { title:'Unsuccessful', message:'Someone has beat you in creating that ALU student email please try another one.'});
+  if(req.session.email && req.session.googleErrorMessage){
+  res.render('error', { title:'Unsuccessful', message: req.session.email + " " + req.session.googleErrorMessage});
+}else{
+  res.render('error', { title:'Unsuccessful', message: ""});
+}
 });
 module.exports = router;

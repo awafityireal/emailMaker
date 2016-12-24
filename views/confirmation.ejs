@@ -1,10 +1,25 @@
 <%- include header.ejs %>
 	<div class="container">
 		<div class="jumbotron">
-			  <h1>Email Successfully created!</h1>
-			  
-		</div>
+			  <h1>Hey <%= firstName %> <%= lastName %>!! Your email (<%= email %>) was successfully created!</h1>
 
-		<h1>Success</h1>
+		</div>
+		<!-- Full Width Image Header with Logo -->
+	<!-- Image backgrounds are set within the full-width-pics.css file. -->
+	<header class="image-bg-fluid-height">
+			<img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
+	</header>
+
+	<!-- Content Section -->
+	<section>
+			<div class="container">
+					<div class="row">
+							<div class="col-lg-12">
+									<p class="section-paragraph"><a href="https://www.google.com/accounts/AccountChooser?Email=<%= email %>&continue=https://apps.google.com/user/hub">Click here to sign in to your ALU email</a>
+								</p>
+					</div>
+			</div>
+	</section>
+
 	</div>
 <%- include footer.ejs %>
