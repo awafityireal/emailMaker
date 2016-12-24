@@ -24,7 +24,7 @@ $(document).ready(
 				var lname= $("#lName").val();
 				var email = $("#userEmail").val();
 				var pass = $("#userPassword").val();
-
+				var confirm = $("#userPasswordConfirm").val();
 
 				if(!validateEmail(oldemail)){
 					$("#oldemailspan").text("not a valid email!");
@@ -54,7 +54,7 @@ $(document).ready(
 					$("#lnamegroup").removeClass("has-error");
 				}
 				if(!validateALUEmail(email)){
-					$("#useremailspan").text("Please use between 6 and 30 characters. Use only letters (a-z), numbers, and periods.");
+					$("#useremailspan").text("Please use between 6 - 30 characters. Use only letters (a-z), numbers, and periods.");
 					$("#useremailgroup").addClass("has-error");
 					$("#useremailgroup").removeClass("has-success");
 				}else{
@@ -66,10 +66,23 @@ $(document).ready(
 					$("#passwordspan").text("Password must have 1 uppercase alphabet, 1 lowercase alphabet, 1 digits and 1 special character. Also the minimum allowed length is 8 characters!");
 					$("#passwordgroup").addClass("has-error");
 					$("#passwordgroup").removeClass("has-success");
+					$("#passwordconfirmgroup").addClass("has-error");
+					$("#passwordconfirmgroup").removeClass("has-success");
+
 				}else{
 					$("#passwordspan").text("");
 					$("#passwordgroup").addClass("has-success");
 					$("#passwordgroup").removeClass("has-error");
+					if(pass === confirm){
+						$("#passwordconfirmspan").text("");
+						$("#passwordconfirmgroup").addClass("has-success");
+						$("#passwordconfirmgroup").removeClass("has-error");
+					}else{
+						$("#passwordconfirmspan").text("Passwords do not match");
+						$("#passwordconfirmgroup").addClass("has-error");
+						$("#passwordconfirmgroup").removeClass("has-success");
+					}
+
 				}
 
 				if(!(validateEmail(oldemail) && validateName(fname) && validateName(lname) && validateALUEmail(email) && validatePassword(pass)))

@@ -27,6 +27,8 @@ router.post('/', function(req, res) {
   //MongoDB
   db.studentEmails.findOne({email:oldEmail},function(error, docs){
     if(docs!=null){
+          console.log(docs);
+          console.log(docs.email);
           console.log("make new email");
           //message = makeNewEmail(firstName,lastName,newEmail,emailPassword);
           var jwtClient = new google.auth.JWT(
@@ -53,13 +55,19 @@ router.post('/', function(req, res) {
                       console.log('The API returned an error: ' + error);
                       req.session.googleErrorMessage = "email already taken!";
                       res.redirect('/googleError');
+                      console.log(docs.email);
                       return;
                     }
                     console.log("going to delete email on database");
+                    console.log(docs.email);
                     // uncomment to delete email from db after student email has been created
                     try {
-                    db.studentEmails.remove({email:oldEmail});
-                    console.log("deleted email on database");
+                      var db = mongojs('studentEmails', ['studentEmails']);
+                    db.studentEmails.remove({email: docs.email},function(err){
+                      if(!err)console.log("deleted email on database");
+                      else console.log(err);
+                    });
+
                     } catch (e) {
                        console.log(e);
                     }

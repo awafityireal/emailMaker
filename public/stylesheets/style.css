@@ -3,6 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.jumbotron h1{
+  text-align: center;
+}
 a {
   color: #00B7FF;
 }
