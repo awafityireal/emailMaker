@@ -8,7 +8,7 @@ function validateEmail(email) {
   return re.test(email);
 }
 function validateALUEmail(email){
-	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@student.alu.edu$/;
+	var re = /^[a-zA-Z0-9.]{6,30}$/;
   return re.test(email);
 }
 function validatePassword(pass){
@@ -54,7 +54,7 @@ $(document).ready(
 					$("#lnamegroup").removeClass("has-error");
 				}
 				if(!validateALUEmail(email)){
-					$("#useremailspan").text("not a valid email must end with @student.alu.edu!");
+					$("#useremailspan").text("Please use between 6 and 30 characters. Use only letters (a-z), numbers, and periods.");
 					$("#useremailgroup").addClass("has-error");
 					$("#useremailgroup").removeClass("has-success");
 				}else{
@@ -63,7 +63,7 @@ $(document).ready(
 					$("#useremailgroup").removeClass("has-error");
 				}
 				if(!validatePassword(pass)){
-					$("#passwordspan").text("Password must have 1 uppercase alphabet, 1 lowercase alphabet, 1 digits and 1 special character. Also the minimum allowed length is 8 characters.");
+					$("#passwordspan").text("Password must have 1 uppercase alphabet, 1 lowercase alphabet, 1 digits and 1 special character. Also the minimum allowed length is 8 characters!");
 					$("#passwordgroup").addClass("has-error");
 					$("#passwordgroup").removeClass("has-success");
 				}else{

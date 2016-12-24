@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
 
   req.session.first=firstName;
   req.session.last=lastName;
-  req.session.email=newEmail;
+  req.session.email=newEmail+"@student.alu.edu";
 
   var db = mongojs('studentEmails', ['studentEmails']);
   //MongoDB
@@ -46,7 +46,7 @@ router.post('/', function(req, res) {
                     resource: {
                     name: { givenName: firstName, familyName: lastName },
                     password:emailPassword,
-                    primaryEmail:newEmail
+                    primaryEmail:newEmail+"@student.alu.edu"
                     }
                 },function(error, response){
                     if (error) {
@@ -65,7 +65,7 @@ router.post('/', function(req, res) {
                     }
                     res.redirect('/cpage');
                     return;
-                  
+
                 });
             });
 
