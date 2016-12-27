@@ -5,6 +5,18 @@ var googleAuth = require('google-auth-library');
 var key = require('../emailMaker.json');
 var fs = require('fs');
 var mongojs = require('mongojs');
+//used for gmail base64 encoding of message
+var base64 = require('base-64');
+//
+function updateCreatedEmails(first, last, oldemail, newemail){
+  var db = mongojs('createdEmails', ['createdEmails']);
+  db.createdEmails.insert({firstName: first, lastName: last, oldEmail: oldemail, newEmail: newemail},function(error,res){
+    if(error){
+      console.log(error);
+    }
+    db.close();
+  });
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,12 +42,11 @@ router.post('/', function(req, res) {
           console.log(docs);
           console.log(docs.email);
           console.log("make new email");
-          //message = makeNewEmail(firstName,lastName,newEmail,emailPassword);
           var jwtClient = new google.auth.JWT(
             key.client_email,
             null,
             key.private_key,
-            ["https://www.googleapis.com/auth/admin.directory.user"],
+            ["https://www.googleapis.com/auth/admin.directory.user", "https://mail.google.com/", "https://www.googleapis.com/auth/gmail.modify", "https://www.googleapis.com/auth/gmail.compose", "https://www.googleapis.com/auth/gmail.send"],
             'eruiz@alu.edu'
           );
           jwtClient.authorize(function (err, tokens) {
@@ -60,20 +71,32 @@ router.post('/', function(req, res) {
                     }
                     console.log("going to delete email on database");
                     console.log(docs.email);
-                    // uncomment to delete email from db after student email has been created
+                    //delete email from db after student email has been created
                     try {
                       var db = mongojs('studentEmails', ['studentEmails']);
                     db.studentEmails.remove({email: docs.email},function(err){
                       if(!err)console.log("deleted email on database");
                       else console.log(err);
                     });
-
                     } catch (e) {
                        console.log(e);
-                    }
-                    res.redirect('/cpage');
-                    return;
+                    }//end delete email from db
 
+                    updateCreatedEmails(firstName, lastName, oldEmail, req.session.email);
+                    res.redirect('/cpage');
+                            //let's send them an email to notify them
+                            google.gmail('v1').users.messages.send({
+                            'auth':jwtClient,
+                            'userId': docs.email,
+                            resource:{
+                                    'raw': base64.encode("To:"+docs.email+"\nFrom:tech@alu.edu\nSubject: Your new ALU student email\n\n Hello " + req.session.first + " " + req.session.last + ",\n\nYour new ALU student email:\t" + req.session.email +"\nwith the password:\t" + emailPassword + "\n has been created.\n\nYou can use this link to access your email: https://www.google.com/accounts/AccountChooser?Email="+req.session.email+"&continue=https://apps.google.com/user/hub")
+                            }
+                          },function(error,response){
+                            if (error) {
+                              console.log(error);
+                            }
+                          });//end of sending email
+                   return;
                 });
             });
 
