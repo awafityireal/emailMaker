@@ -53,5 +53,5 @@ app.use(function(err, req, res, next) {
   res.render('404');
   //renders 404.ejs
 });
-
+app.listen(80);
 module.exports = app;
